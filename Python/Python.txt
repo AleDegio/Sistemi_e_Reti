@@ -1,0 +1,8 @@
+Python è un linguaggio moderno (come Javascript) 
+simile al javascrit (si usano entrambi sul backand) 
+due tipi di linguaggio Python:
+Python2 (non più mantenuto) 
+Python3 (quello che useremo noi)
+Multipiattaforma = gira su qualsiasi sistema operativo
+linguaggio interpretato (come Java) 
+linguaggio orientato alle funzioni 
