@@ -3,6 +3,8 @@ chiedere all'utente il numero di nodi
 per ogni nodo chiedre i vicini di ogni nodo
 stampare la lista di adiacenza 
 """
+import matplotlib.pyplot as plt
+from networkx import nx
 
 def toDizionario(matr):
     diz = {}
@@ -80,20 +82,45 @@ def orientatoPesato(m):
     print(m)
 
 def menu(scelta, m):
+    orientato = False
     if scelta == 1:
         orientatoNonPesato(m)
+        orientato = True
     elif scelta == 2: 
         nonOrientatoNonPesato(m)
     elif scelta == 3: 
         nonOrientatoPesato(m)
     elif scelta == 4: 
         orientatoPesato(m)
+        orientato = True
+    return orientato
 
+def stampaGrafo(orientato, m):
+    if (orientato == False):
+        g = nx.Graph()
+    else: 
+        g = nx.DiGraph()
 
+    for i in range(0, len(m)):
+        g.add_node(i)
 
-def main(): 
-    nNodi = input("Quanti nodi ci sono? ")
+    for j in range(0, len(m)):
+        for k in range(0, len(m[j])):
+            if (m[j][k] == 1):
+                g.add_edge(j, k)
+            elif (m[j][k] > 1): 
+                g.add_edge(j, k, weight=m[j][k])
+    
+    pos = nx.spring_layout(g)
+    nx.draw(g, pos, with_labels=True)
+    labels = nx.get_edge_attributes(g,'weight')
+    nx.draw_networkx_edges(g, pos, arrowstyle='->',arrowsize=40)
+    nx.draw_networkx_edge_labels(g, pos, edge_labels=labels)
+    plt.show()
+
+def main():   
     m = []
+    nNodi = input("Quanti nodi ci sono? ")
 
     for i in range(0, int(nNodi)):
         vet = []
@@ -102,13 +129,12 @@ def main():
         m.append(vet)
     diz = toDizionario(m)
     #print(diz['nodo 2']) #stampa solo il nodo 2
-    
-    print("1: Orientato NON Pesato \n 2: NON Orientato NON Pesato \n 3: NON Orientato Pesato \n 4: Orientato Pesato")
+
+    print(" 1: Orientato NON Pesato \n 2: NON Orientato NON Pesato \n 3: NON Orientato Pesato \n 4: Orientato Pesato")
     scelta = input("Che grafo vuoi? ")
-    menu(int(scelta), m)
+    orientato = menu(int(scelta), m)
 
-
-    
-
+    stampaGrafo(orientato, m)
+ 
 if __name__ == "__main__":
     main()
