@@ -97,8 +97,10 @@ def menu(scelta, m):
     elif scelta == 2: 
         nonOrientatoNonPesato(m)
     elif scelta == 3: 
+        print("nodo.peso")
         nonOrientatoPesato(m)
     elif scelta == 4: 
+        print("nodo.peso")
         orientatoPesato(m)
         orientato = True
     return orientato
