@@ -1,5 +1,7 @@
 """
-Scrivere un programma che
+Alessia De Giovannini
+4°A ROB
+
 """
 dim = input("quanti numeri vuoi? ")
 lista = []
@@ -13,8 +15,9 @@ ancora = True
 l1 = []
 if (input("vuoi un numero (S per sì)")=='S'):
     ancora = True
-
+"""
 while (ancora==True):
     l1.append
 ...................
 .....................
+"""

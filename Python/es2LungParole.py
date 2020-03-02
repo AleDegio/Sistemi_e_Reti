@@ -1,7 +1,9 @@
 """
-chiede all'utente una lista di parole,
-inserisci in un'altra lista (l2) le parole più linghe
-e stampa la lista (l2).
+Alessia De Giovannini
+4°A ROB
+1) chiedere all'utente una lista di parole,
+2) inserire in un'altra lista (l2) le parole più lunghe
+3) stampare la lista (l2)
 (usare il comando length)
 """
 

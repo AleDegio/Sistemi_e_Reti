@@ -1,7 +1,8 @@
-'''
+"""
+Alessia De Giovannini
+4°A ROB
 importare una libreria
-'''
-
+"""
 #per importare le LIBRERIE
 import random
 #oppure

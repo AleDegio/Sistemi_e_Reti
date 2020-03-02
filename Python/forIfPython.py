@@ -1,4 +1,6 @@
 """
+Alessia De Giovannini
+4°A ROB
 ciclo FOR con IF
 """
 for i in range(0, 10):

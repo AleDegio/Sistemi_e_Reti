@@ -1,6 +1,8 @@
-'''
+"""
+Alessia De Giovannini
+4°A ROB
 funzioni push, pop e strutture
-'''
+"""
 import random
 
 #funzione = contenitore = wrapper

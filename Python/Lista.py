@@ -1,5 +1,7 @@
 """
-lista
+Alessia De Giovannini
+4°A ROB
+liste 
 """
 def somma(a, b):
     return a + b
@@ -10,7 +12,7 @@ lista = [1, 'ciao', 3, somma(3, 4)]
 #scorri la lista e stampa l'elemento della lista (i)
 #si cicla sull'elemento della lista (i)
 for i in lista:
-    print(i);
+    print(i)
 
 print(lista)
 

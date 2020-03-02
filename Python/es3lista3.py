@@ -1,4 +1,6 @@
 '''
+Alessia De Giovannini
+4°A ROB
 Date 2 liste (l1 e l2), calcolare l'intersezione
 (trova i valori uguale nelle due liste)
 creare una terza lista che contenga solo le parole uguali in l1 e l2

@@ -1,3 +1,8 @@
+"""
+Alessia De Giovannini
+4°A ROB
+puntatore
+"""
 l1 = [1,2,3,4]
 
 #l2 punta alla stessa cella di l1

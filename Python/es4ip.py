@@ -1,7 +1,9 @@
 """
-chiedere un ip di rete 
-chidere una maschera
-il programma deve calcolare tutti gli indirizzi ip
+Alessia De Giovannini
+4°A ROB
+1) chiedere un ip di rete 
+2) chidere una maschera
+3) il programma deve calcolare tutti gli indirizzi ip
 """
 
 def toBin(indirizzo):

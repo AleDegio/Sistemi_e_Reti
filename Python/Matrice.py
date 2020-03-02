@@ -1,7 +1,10 @@
 """
-chiedere all'utente il numero di nodi 
-per ogni nodo chiedre i vicini di ogni nodo
-stampare la lista di adiacenza 
+Alessia De Giovannini
+4°A ROB 
+1) inserimento grafo da standard input
+2) funzione di conversione da matrice di adiacenza a dizionario di adiacenza
+3) funzione di conversione da dizionario di adiacenza a matrice di adiacenza
+4) utilizzo del costrutto if __name__ == "__main__":
 """
 import matplotlib.pyplot as plt
 from networkx import nx
