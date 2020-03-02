@@ -15,6 +15,14 @@ def toDizionario(matr):
         diz['nodo '+ str(i+1)] = vet
     return diz
 
+def toMatrice(diz):
+    matr = []
+    for j in range(0, len(diz)):
+        vet = []
+        vet.append(diz['nodo ' + str(j+1)])
+        matr.append(vet)
+    return matr
+
 def nonOrientatoNonPesato(m):
     for i in range(0, len(m)):
         vicini = input(f"Inserire i vicini del nodo {i}: ").split(".")
@@ -129,12 +137,15 @@ def main():
         m.append(vet)
     diz = toDizionario(m)
     #print(diz['nodo 2']) #stampa solo il nodo 2
+    matr = toMatrice(diz)
+
 
     print(" 1: Orientato NON Pesato \n 2: NON Orientato NON Pesato \n 3: NON Orientato Pesato \n 4: Orientato Pesato")
     scelta = input("Che grafo vuoi? ")
     orientato = menu(int(scelta), m)
 
     stampaGrafo(orientato, m)
- 
+
+
 if __name__ == "__main__":
     main()
