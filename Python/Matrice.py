@@ -132,11 +132,14 @@ def main():
     m = []
     nNodi = input("Quanti nodi ci sono? ")
 
+    m = [[0 for i in range(0, int(nNodi))] for j in range(0, int(nNodi))]
+    """
     for i in range(0, int(nNodi)):
         vet = []
         for j in range(0, int(nNodi)):
             vet.append(0)
         m.append(vet)
+    """
     diz = toDizionario(m)
     #print(diz['nodo 2']) #stampa solo il nodo 2
     matr = toMatrice(diz)
