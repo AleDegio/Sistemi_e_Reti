@@ -69,7 +69,6 @@ def creazioneMatrAdiacenze(campo, dim):
                         j2 = campo[i+1][j]
                         m[i2][j2] = 1
                         m[j2][i2] = 1
-    
     return m
         
 
