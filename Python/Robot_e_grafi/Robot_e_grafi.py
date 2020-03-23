@@ -3,6 +3,9 @@ Alessia De Giovannini
 4°A ROB 
 Robot e grafi 
 """
+import networkx as nx
+import numpy as np
+
 def toDizionario(matr):
     diz = {}
     for i in range(0, len(matr)):
@@ -12,66 +15,78 @@ def toDizionario(matr):
         diz['nodo '+ str(i+1)] = vet
     return diz
 
-def main():
-    #creazione del pavimento 
+def leggiPavi():
+    file = open("data.txt", "r")
+    lines = file.readlines()
     pavi = []
-    dim = input("Inserisci la dimensione del pavimento: ")
-    dimM = 0
-    for i in range(0, int(dim)):
-        riga = []
-        for j in range(0, int(dim)):
-            riga.append(True)
-        pavi.append(riga)
-    interruz = False
-    while interruz == False:
-        ostacolo = input("Inserisci le cordinate della cella dove si trova l'ostacolo (inserisci -1 per terminare): ")
-        if ostacolo != "-1":
-            cordinate = ostacolo.split(".")
-            i = int(cordinate[0])
-            j = int(cordinate[1])
-            pavi[i][j] = False
-            dimM = dimM + 1
-        else: 
-            interruz = True
-    print(pavi)
-
-    dimM = int(dim) * int(dim) - dimM
-    m = []
-    for i in range(0, dimM): 
+    dim = 0
+    for line in lines:
+        cells = line.replace("\n", "").split(" ")
         vet = []
-        for j in range(0, dimM):
-            vet.append(0)
-        m.append(vet)
+        for cell in cells:
+            if cell == "True":
+                vet.append(True)
+            elif cell == "False" :
+                vet.append(False)
+                dim = dim + 1
+            
+        pavi.append(vet)
+    return pavi, dim
 
-    m2 = []
+def creazioneCampo(pavi):
+    campo = []
     cont = 0
-    for i in range(0, int(dim)):
+    
+    for i in range(0, len(pavi)):
         vet = []
-        for j in range(0, int(dim)):
+        for j in range(0, len(pavi)):
             if pavi[i][j] == True:
                 vet.append(cont)
                 cont = cont + 1
             else: 
                 vet.append(-1)
-        m2.append(vet)
-    print(m2)
+        campo.append(vet)
+    return campo
 
-    for i in range(0, int(dim)):
-        for j in range(0, int(dim)):
-            if m2[i][j] != -1:
-                i2 = m2[i][j]
-                if j+1 < int(dim):
-                    if m2[i][j+1] != -1:
-                        j2 = m2[i][j+1]
+def creazioneMatrAdiacenze(campo, dim):
+    #Creo Matrice vuota
+    m = []
+    for i in range(0, dim): 
+        vet = []
+        for j in range(0, dim):
+            vet.append(0)
+        m.append(vet)
+
+    #Calcolo matrice adiacenze
+    for i in range(0, len(campo)):
+        for j in range(0, len(campo)):
+            if campo[i][j] != -1:
+                i2 = campo[i][j]
+                if j+1 < len(campo):
+                    if campo[i][j+1] != -1:
+                        j2 = campo[i][j+1]
                         m[i2][j2] = 1
                         m[j2][i2] = 1
-                if i+1 < int(dim):
-                    if m2[i+1][j] != -1: 
-                        j2 = m2[i+1][j]
+                if i+1 < len(campo):
+                    if campo[i+1][j] != -1: 
+                        j2 = campo[i+1][j]
                         m[i2][j2] = 1
-                        m[j2][i2] = 1 
-    print(m)
-    diz = toDizionario(m)
+                        m[j2][i2] = 1
+    return m
+        
+
+def main():
+    pavi, dim = leggiPavi()
+    dim = len(pavi) * len(pavi) - dim
+    campo = creazioneCampo(pavi)
+    mAdiacenze = creazioneMatrAdiacenze(campo, dim)
+    for i in range(0, len(mAdiacenze)):
+        print(mAdiacenze[i])
+
+    mAdiacenze = np.array(mAdiacenze)   #conversione della matrice 
+    G = nx.from_numpy_matrix(mAdiacenze)
+    print(nx.dijkstra_path(G, 0, 14))
+    
 
 if __name__ == "__main__":
     main()
