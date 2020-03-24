@@ -3,9 +3,6 @@ Alessia De Giovannini
 4°A ROB 
 Robot e grafi con Dijkstra
 """
-import networkx as nx
-import numpy as np
-
 def toDizionario(matr):
     diz = {}
     for i in range(0, len(matr)):
@@ -49,7 +46,7 @@ def creazioneCampo(pavi):
     return campo
 
 def creazioneMatrAdiacenze(campo, dim):
-    #Creo Matrice vuota
+    #Creare Matrice VUOTA
     m = []
     for i in range(0, dim): 
         vet = []
@@ -57,7 +54,7 @@ def creazioneMatrAdiacenze(campo, dim):
             vet.append(0)
         m.append(vet)
 
-    #Calcolo matrice adiacenze
+    #Calcolare matrice adiacenze
     for i in range(0, len(campo)):
         for j in range(0, len(campo)):
             if campo[i][j] != -1:
@@ -73,22 +70,78 @@ def creazioneMatrAdiacenze(campo, dim):
                         m[i2][j2] = 1
                         m[j2][i2] = 1
     return m
-        
+
+def dijkstra(mAdiacenze, start, stop):
+    daAnalizzare = [start]  #array nodi da analizzare
+    visitati = []   #array nodi gia' visitati
+    costiCammino =  []  #costi cammino 
+    precedenti = []     #array con i migliori precedenti (prec[i] = miglior "precedente" del nodo i-esimo)
+
+    controlloStart = False
+    controlloStop = False
+    
+    for j in mAdiacenze[start]:
+        if(j == 1):
+            controlloStart = True
+
+    for j in mAdiacenze[stop]:
+        if(j == 1):
+            controlloStop = True
+    
+    if(controlloStart == False or controlloStop == False):
+        print("Non e' possibile raggiungere il nodo: " + str(stop) + " partendo dal nodo: " + str(start))
+    else:
+        for i in range(0,len(mAdiacenze)):
+            costiCammino.append("inf")
+            precedenti.append(i)
+
+        costiCammino[start] = 0
+        precedenti[start] = start
+
+        while(daAnalizzare != []):
+            nodo = daAnalizzare[0]
+            daAnalizzare.pop(0)
+            visitati.append(nodo)
+
+            vicini = []
+            for j in range(0, len(mAdiacenze)):
+                if (mAdiacenze[nodo][j] == 1):
+                    vicini.append(j)
+                
+            for vicino in vicini:
+                costoCalcolato = 0
+                if(costiCammino[nodo] != "inf"):
+                    costoCalcolato = costiCammino[nodo] + 1
+                else:
+                    costoCalcolato = 1
+                
+                if((costiCammino[vicino] == "inf") or (costoCalcolato < costiCammino[vicino]) ):
+                    costiCammino[vicino] = costoCalcolato
+                    precedenti[vicino] = nodo
+                    daAnalizzare.append(vicino)     #aggiungo i vicini come nodi da analizzare se il loro costo è minore di quello precedente
+            
+        camminoMigliore = []
+        camminoMigliore.append(stop)
+        trovato = False
+        i = stop
+        while(trovato == False):
+            if(precedenti[i] == start):
+                trovato = True
+            camminoMigliore.append(precedenti[i])
+            i = precedenti[i]
+
+        camminoMigliore.reverse()   
+        print(camminoMigliore)
+
 
 def main():
     pavi, dim = leggiPavi()
     dim = len(pavi) * len(pavi) - dim
     campo = creazioneCampo(pavi)
     mAdiacenze = creazioneMatrAdiacenze(campo, dim)
-    for i in range(0, len(mAdiacenze)):
-        print(mAdiacenze[i])
-
-    mAdiacenze = np.array(mAdiacenze)   #conversione della matrice 
-    G = nx.from_numpy_matrix(mAdiacenze)
-    start = input("Inserisci il punto di partenza: ")
-    destination = input("Inserisci la destinazione: ")
-    print(nx.dijkstra_path(G, int(start), int(destination)))
-    
+    start = input("inserisci il nodo di partenza: ")
+    stop = input("inserisci il nodo di destinazione: ") 
+    dijkstra(mAdiacenze, int(start), int(stop))
 
 if __name__ == "__main__":
     main()
