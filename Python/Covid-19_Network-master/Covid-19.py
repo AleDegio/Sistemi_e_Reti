@@ -33,7 +33,7 @@ def toMatrice(diz):
     return matr
 
 def paz0(matr):
-    for i in range(0, len(matr)):
+    for i in range(0, len(matr)): #scorre tutti i pazienti 
         troj = False
         portatore = False
         '''
@@ -43,8 +43,10 @@ def paz0(matr):
         '''
         #if portatore:
         k = 0
-        while (k < len(matr) and troj == False):
-            if matr[k][i] == 0 :
+        
+        #controlla se il paziente e' stato contagiato da qualcuno
+        while (k < len(matr) and troj == False): 
+            if matr[k][i] == 0 : 
                 k = k + 1
             else:
                 troj = True
