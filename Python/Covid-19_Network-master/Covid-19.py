@@ -46,7 +46,7 @@ def paz0(matr):
         
         #controlla se il paziente e' stato contagiato da qualcuno
         while (k < len(matr) and troj == False): 
-            if matr[k][i] == 0 : 
+            if matr[k][i] == 0 : #se nessuno ha contagiato il paziente 
                 k = k + 1
             else:
                 troj = True
