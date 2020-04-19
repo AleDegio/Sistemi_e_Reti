@@ -80,10 +80,12 @@ def dijkstra(mAdiacenze, start, stop):
     controlloStart = False
     controlloStop = False
     
+    #scorre la riga START e controlla che ci sia almeno un collegamneto con qualche altro nodo
     for j in mAdiacenze[start]:
         if(j == 1):
             controlloStart = True
-
+            
+    #scorre la riga STOP e controlla che ci sia almeno un collegamneto con qualche altro nodo
     for j in mAdiacenze[stop]:
         if(j == 1):
             controlloStop = True
@@ -119,7 +121,8 @@ def dijkstra(mAdiacenze, start, stop):
                     costiCammino[vicino] = costoCalcolato
                     precedenti[vicino] = nodo
                     daAnalizzare.append(vicino)     #aggiungo i vicini come nodi da analizzare se il loro costo è minore di quello precedente
-            
+        
+        #stampa del cammino migliore     
         camminoMigliore = []
         camminoMigliore.append(stop)
         trovato = False
