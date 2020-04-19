@@ -72,6 +72,7 @@ def creazioneMatrAdiacenze(campo, dim):
     return m
 
 def dijkstra(mAdiacenze, start, stop):
+    #creazione 
     daAnalizzare = [start]  #array nodi da analizzare
     visitati = []   #array nodi gia' visitati
     costiCammino =  []  #costi cammino 
@@ -90,13 +91,15 @@ def dijkstra(mAdiacenze, start, stop):
         if(j == 1):
             controlloStop = True
     
+    #inizializzazione 
     if(controlloStart == False or controlloStop == False):
         print("Non e' possibile raggiungere il nodo: " + str(stop) + " partendo dal nodo: " + str(start))
     else:
         for i in range(0,len(mAdiacenze)):
             costiCammino.append("inf")
             precedenti.append(i)
-
+        
+        #scoperta vicini del nodo da analizzare 
         costiCammino[start] = 0
         precedenti[start] = start
 
@@ -104,23 +107,25 @@ def dijkstra(mAdiacenze, start, stop):
             nodo = daAnalizzare[0]
             daAnalizzare.pop(0)
             visitati.append(nodo)
-
+            
             vicini = []
             for j in range(0, len(mAdiacenze)):
                 if (mAdiacenze[nodo][j] == 1):
                     vicini.append(j)
-                
+            
+            #per ogni vicino si calcola il costo 
             for vicino in vicini:
                 costoCalcolato = 0
                 if(costiCammino[nodo] != "inf"):
                     costoCalcolato = costiCammino[nodo] + 1
                 else:
                     costoCalcolato = 1
-                
+                    
+                #sostituisco la leable se il costo e' migliore 
                 if((costiCammino[vicino] == "inf") or (costoCalcolato < costiCammino[vicino]) ):
                     costiCammino[vicino] = costoCalcolato
                     precedenti[vicino] = nodo
-                    daAnalizzare.append(vicino)     #aggiungo i vicini come nodi da analizzare se il loro costo è minore di quello precedente
+                    daAnalizzare.append(vicino)     #aggiungo i vicini come nodi da analizzare se il loro costo e' minore di quello precedente
         
         #stampa del cammino migliore     
         camminoMigliore = []
