@@ -33,14 +33,14 @@ def fromStringToInt(parola, chiave):
 #in base alla posizione nell'alfabeto
 def fromIntToString(somma):
     parolaCifrata = []
-    for i in range(0,len(somma)):
+    for i in range(0, len(somma)):
         parolaCifrata.append(alfabeto[somma[i]])
     
     return parolaCifrata
 
 
 def cifra(parola, chiave):
-    intParola, intChiave = fromStringToInt(parola,chiave)
+    intParola, intChiave = fromStringToInt(parola, chiave)
     somma = []
     min = 0
 
@@ -66,7 +66,7 @@ def main():
     #chiedo parola e chiave
     parola = input("Inserisci la parola da cifrare: ")
     chiave = input("Inserisci la chiave di cifratura: ")
-    parolaCifrata = cifra(parola,chiave)
+    parolaCifrata = cifra(parola, chiave)
 
     print(parolaCifrata)
 
