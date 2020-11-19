@@ -21,8 +21,6 @@ def generaChiave():
     pi = primo(num)
     num = randint(1, 100)
     qu = primo(num)
-    pi = 97
-    qu = 83 
     
     #trovare n 
     n = pi*qu 
